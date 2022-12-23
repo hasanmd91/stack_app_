@@ -20,7 +20,7 @@ const App = () => {
   };
   return (
     <div className="container">
-      <h1> This app will reverse any string using stack data structure </h1>
+      <h1> Reverse any string using stack data structure </h1>
       <form
         className="mb-3"
         onChange={changeHandeler}
@@ -39,7 +39,7 @@ const App = () => {
 
         <button type="submit">Submit</button>
       </form>
-      <h2> {reversed}</h2>
+      <h2>Reversed string : {reversed}</h2>
     </div>
   );
 };
