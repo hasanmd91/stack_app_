@@ -1,42 +1,46 @@
-import { render } from "@testing-library/react";
 import React, { useState } from "react";
-import Card from "./components/Card";
-
-let number = [[1, 2, 3, 4, 5, 6, 7]
-let numberTopush = 1;
+import "./App.css";
 
 const App = () => {
-  const [array, setArray] = useState([]);
+  const [data, setData] = useState("");
+  const [reversed, setReversed] = useState("");
 
-  const pushHandeler = () => {
-    number.push(numberTopush);
-    numberTopush++;
-    setArray(number);
-    console.log(array);
+  const changeHandeler = (e) => {
+    setData(e.target.value);
   };
-  const popHandeler = () => {
-    if (number.length === 0) {
-      return;
-    } else {
-      number.pop();
+
+  const submitHandeler = (e) => {
+    e.preventDefault();
+    const array = data.split("");
+    let newdata = "";
+    for (let i = array.length; i > 0; i--) {
+      newdata += array.pop();
     }
-    setArray(number);
-    console.log(array);
+    setReversed(newdata);
   };
-
   return (
-    <div>
-    {array.map((ele) => (
-      <Card element={ele} key={ele} />
-    ))}
-    <button type="submit" onClick={pushHandeler}>
-      Push
-    </button>
-    <button type="submit" onClick={popHandeler}>
-      Pop
-    </button>
-  </div>
-   
+    <div className="container">
+      <h1> This app will reverse any string using stack data structure </h1>
+      <form
+        className="mb-3"
+        onChange={changeHandeler}
+        onSubmit={submitHandeler}
+      >
+        <div>
+          <label htmlFor="formGroupExampleInput" className="form-label">
+            Input:
+          </label>
+          <input
+            type="text"
+            id="formGroupExampleInput"
+            placeholder=" write your word "
+          />
+        </div>
+
+        <button type="submit">Submit</button>
+      </form>
+      <h2> {reversed}</h2>
+    </div>
   );
 };
 
